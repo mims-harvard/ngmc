@@ -24,7 +24,7 @@ from ngmc import Ngmc
 from data import loader
 
 
-def evaluate_prediction_of_missing_data(ngmc):
+def eval(ngmc):
     G_hat = ngmc.imputed()
     true = np.array(zip(*test_gi)[2])
     pred = np.array([(G_hat[i, j]+G_hat[j, i])/2. for i, j, _ in test_gi])
@@ -54,8 +54,8 @@ for i in np.random.choice(xrange(len(cnds)-1), n_rem, replace=False):
     Gma[idx2, idx1] = np.nan
 print "Missing data (after test set): %5.4f" % (np.sum(Gma.mask)/float(Gma.size))
 
-ngmc = Ngmc(Gma, c=60, callback=evaluate_prediction_of_missing_data)
+ngmc = Ngmc(Gma, c=60, callback=eval)
 ngmc.fit()
 print "::Final evaluation after learning:"
-nrmse, pearson = evaluate_prediction_of_missing_data(ngmc)
+nrmse, pearson = eval(ngmc)
 
