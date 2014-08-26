@@ -35,27 +35,24 @@ def eval(ngmc):
 
 
 np.random.seed(42)
-Gma, gene2idx = loader.load_surma_emap('data/surma-mmc7/S-Scores-lipid-E-MAP.csv')
-
-print "Size: %d rows, %d cols" % (len(gene2idx), len(gene2idx))
-print "Missing data (before test set): %5.4f" % (np.sum(Gma.mask)/float(Gma.size))
+Gma, gene2idx = loader.load_surma_emap("data/surma-mmc7/S-Scores-lipid-E-MAP.csv")
+print "Missing data rate: %5.4f" % (np.sum(Gma.mask)/float(Gma.size))
 
 # Construct test set and hide interaction measurements
 n_measur = (Gma.size-np.sum(Gma.mask))/2.
 n_rem = int(0.05*n_measur)
-print 'Test size: %d' % n_rem
 nan_ridx, nan_cidx = np.where(Gma.mask == False)
 cnds = list(set([frozenset([r, c]) for r,c in zip(nan_ridx, nan_cidx)]))
 test_gi = []
 for i in np.random.choice(xrange(len(cnds)-1), n_rem, replace=False):
     idx1, idx2 = cnds[i]
     test_gi.append((idx1, idx2, Gma[idx1, idx2]))
-    Gma[idx1, idx2] = np.nan
-    Gma[idx2, idx1] = np.nan
-print "Missing data (after test set): %5.4f" % (np.sum(Gma.mask)/float(Gma.size))
+    Gma[idx1, idx2] = Gma[idx2, idx1] = np.nan
+    Gma.mask[idx1, idx2] = Gma.mask[idx2, idx1] = True
+print "Missing data rate + hidden interactions: %5.4f" % (np.sum(Gma.mask)/float(Gma.size))
 
 ngmc = Ngmc(Gma, c=60, callback=eval)
-ngmc.fit()
-print "::Final evaluation after learning:"
-nrmse, pearson = eval(ngmc)
+ngmc.fit(verbose=True)
+print "::Goodness of fitted model:"
+eval(ngmc)
 
