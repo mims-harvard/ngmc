@@ -29,13 +29,13 @@ Citing
 
 ::
 
-    @article{Zitnik2014,
-      title     = {Data imputation in epistatic MAPs by network-guided matrix completion},
+    @article{Zitnik2015,
+      title     = {Data imputation in epistatic {MAP}s by network-guided matrix completion},
       author    = {{\v{Z}}itnik, Marinka and Zupan, Bla{\v{z}}},
       journal   = {Journal of Computational Biology},
-      volume    = {},
-      number    = {},
-      pages     = {},
-      year      = {2014},
+      volume    = {22},
+      number    = {6},
+      pages     = {595-608},
+      year      = {2015},
       publisher = {Mary Ann Liebert, Inc}
     }
