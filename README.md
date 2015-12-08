@@ -1,5 +1,5 @@
 NG-MC
-===========
+=====
 
 Epistatic miniarray profile (E-MAP) is a popular large-scale gene interaction discovery platform. E-MAPs benefit from quantitative output, which makes it possible to detect subtle interactions. However, due to the limits of biotechnology, E-MAP studies fail to measure genetic interactions for up to 40% of gene pairs in an assay. 
 
@@ -7,7 +7,7 @@ Network-guided matrix completion (NG-MC) is a knowledge-assisted method for impu
 
 NG-MC assumes that interactions are transitive, such that latent gene interaction profiles inferred by NG-MC depend on the profiles of their direct neighbors in gene networks. As the NG-MC inference algorithm progresses, it propagates latent interaction profiles through each of the networks and updates gene network weights towards improved prediction. 
 
-This repository contains supplementary material for *Data imputation in epistatic MAPs by network-guided matrix completion* by Marinka Zitnik and Blaz Zupan. 
+This repository contains supplementary material for *[Data imputation in epistatic MAPs by network-guided matrix completion](http://dx.doi.org/10.1089/cmb.2014.0158)* by Marinka Zitnik and Blaz Zupan.
 
 Usage 
 -----
@@ -26,8 +26,6 @@ For complete example see ``example.py`` or run::
 
 Citing
 ------
-
-::
 
     @article{Zitnik2015,
       title     = {Data imputation in epistatic {MAP}s by network-guided matrix completion},
